@@ -1,4 +1,4 @@
 #!/usr/bin/env ruby
-require_relative '../lib/hi_strung'
+require_relative '../lib/environment'
 
 HiStrung::CLI.new.call
