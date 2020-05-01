@@ -1,35 +1,34 @@
+require 'colorize'
 # controller
 class HiStrung::CLI
 
     def call 
-        list_guitars
+        list_categories
         menu
+        user_input
         goodbye
     end
 
-    def list_guitars
-        puts "      HiStrung 🎸"
-        puts "Find your new guitar today!"
+    def list_categories
+        puts "      HiStrung 🎸".bold.light_red
+        puts "Find your new guitar today!".light_yellow
         puts ""
+        sleep(1)
+        puts "  -CATEGORIES-".italic.red
 
-        puts "   -Categories-"
-
-      puts <<~DOC
-      |Acoustic         |
-      |Electric         |
-      |Bass             |
-      |Ukulele          |
-      |Banjo            |
-      |Left-hand guitars|
-     DOC
-
-     puts "___________________"
+        categories = HiStrung::Scraper.get_categories
+        categories.each do |category|
+            puts "|#{category}|".italic.red
+        end
+        
     end
 
     def menu
         puts ""
         puts "What type of guitar are you looking for?"
-        puts "Type 'help' for commands"
+        sleep(1)
+        puts ""
+        puts "Please enter 'electric' or 'acoustic'"
         puts "Type 'exit' to exit"
         puts "__________________"
         puts ""
@@ -39,71 +38,46 @@ class HiStrung::CLI
         while (input = gets.strip.downcase) != 'exit'
 
             case input
-            when "acoustic"
-                puts "Guitar 1, Description, price"
-                puts "Guitar 2, Description, price"
-                puts "__________________"
-                puts ""
-                print "Enter here: "
             when "electric"
-                puts "Guitar 1, Description, price"
-                puts "Guitar 2, Description, price"
+                puts ""
+               electrics = HiStrung::Scraper.get_electric
+               electrics.each.with_index(1) do |electric, index|
+                puts "#{index}) #{electric[:name]}".red.bold + " - #{electric[:url]}".light_white
+               end
+
                 puts "__________________"
                 puts ""
                 print "Enter here: "
-            when "bass"
-                puts "Bass 1, Description, price"
-                puts "Bass 2, Description, price"
-                puts "__________________"
+            when "acoustic"
                 puts ""
-                print "Enter here: "
-            when "ukulele"
-                puts "Ukulele 1, Description, price"
-                puts "Ukulele 2, Description, price"
-                puts "__________________"
-                puts ""
-                print "Enter here: "
-            when "banjo"
-                puts "Banjo 1, Description, price"
-                puts "Banjo 2, Description, price"
-                puts "__________________"
-                puts ""
-                print "Enter here: "
-            when "left-hand guitars"
-                puts "Guitar 1, Description, price"
-                puts "Guitar 2, Description, price"
-                puts "__________________"
-                puts ""
-                print "Enter here: "
-            when 'help'
-                puts "__________________"
-                puts ""
-                puts "-COMMANDS-"
-                puts "Acoustic"
-                puts "Electric"
-                puts "Bass"
-                puts "Ukulele"
-                puts "Banjo"
-                puts "Left-hand guitars"
-                puts "Help"
-                puts "Exit"
+                acoustics = HiStrung::Scraper.get_acoustic
+                acoustics.each.with_index(1) do |acoustic, index|
+                 puts "#{index}. #{acoustic[:name]}".red.bold + " - #{acoustic[:url]}".light_white
+                end
+                puts "Please enter a number"
+                input = gets.strip.to_i
                 puts "__________________"
                 puts ""
                 print "Enter here: "
             else 
                 puts "'#{input}' is not a valid response!"
-                puts "Type 'help' for commands"
+                puts "Please enter 'electric' or 'acoustic'"
                 puts "__________________"
                 puts ""
                 print "Enter here: "
         end
     end
 end
+
+    def user_input
+
+
+    end
             
-  def goodbye
-    puts "__________________"
-    puts ""
-    puts "Thank you for browsing!"
-  end
+    def goodbye
+        puts "__________________"
+        puts ""
+        puts "Thank you for browsing!"
+    end
 
 end
