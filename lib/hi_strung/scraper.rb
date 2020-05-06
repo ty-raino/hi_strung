@@ -1,3 +1,4 @@
+
 class HiStrung::Scraper
 
     def self.get_categories
@@ -9,12 +10,12 @@ class HiStrung::Scraper
 
         while counter < doc.css("li.tiles__tile a.category-item").length
         categories = doc.css("li.tiles__tile a.category-item")[counter].text
+        
         counter += 1
         category_array << categories
         end
         array = category_array.take(2)
         return array
-        binding.pry
     end
 
     def self.get_electric
@@ -32,6 +33,7 @@ class HiStrung::Scraper
         electrics << electric
         end
         electrics
+        HiStrung::Guitar.mass_create_electrics(electrics)
     end
 
     def self.get_acoustic
@@ -49,13 +51,21 @@ class HiStrung::Scraper
             acoustics << acoustic
         end
         acoustics
+        HiStrung::Guitar.mass_create_acoustics(acoustics)
     end
 
-    def self.get_electric_info
+    
+    
+ 
+    def self.get_electric_info(electric)
+       url = electric.url
+       doc = Nokogiri::HTML(open(url))
+
+       full_name = doc.css("div.overflowing-row__items ul.tiles.tiles--single-row.tiles--grow.tiles--large li.tiles__tile div.csp-square-card__main h3").first.text
     end
 
-    def self.get_acoustic_info
-    end
+    # def self.get_acoustic_info(acoustic)
+    # end
 end
 
 

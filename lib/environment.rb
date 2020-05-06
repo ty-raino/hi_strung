@@ -8,7 +8,7 @@ require_relative 'hi_strung/guitar'
 require 'nokogiri'
 require 'open-uri'
 require 'pry'
-require 'httparty'
+
 # require 'colorize'
 
 # module HiStrung
