@@ -51,6 +51,8 @@ class HiStrung::Scraper
             acoustics << acoustic
         end
         acoustics
+        acoustics.delete_at(2)
+        acoustics.delete_at(3)
         HiStrung::Guitar.mass_create_acoustics(acoustics)
     end
 
@@ -64,8 +66,12 @@ class HiStrung::Scraper
        full_name = doc.css("div.overflowing-row__items ul.tiles.tiles--single-row.tiles--grow.tiles--large li.tiles__tile div.csp-square-card__main h3").first.text
     end
 
-    # def self.get_acoustic_info(acoustic)
-    # end
+    def self.get_acoustic_info(acoustic)
+        url = acoustic.url
+        doc = Nokogiri::HTML(open(url))
+
+        full_name = doc.css("div.overflowing-row__items ul.tiles.tiles--single-row.tiles--grow.tiles--large li.tiles__tile div.csp-square-card__main h3").first.text
+    end
 end
 
 
