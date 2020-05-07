@@ -8,10 +8,3 @@ require_relative 'hi_strung/guitar'
 require 'nokogiri'
 require 'open-uri'
 require 'pry'
-
-# require 'colorize'
-
-# module HiStrung
-#   class Error < StandardError; end
-#   # Your code goes here...
-# end
