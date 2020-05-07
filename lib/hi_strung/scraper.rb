@@ -51,6 +51,7 @@ class HiStrung::Scraper
             acoustics << acoustic
         end
         acoustics
-        HiStrung::Guitar.mass_create_acoustics(acoustics)
+        array = acoustics.take(5)
+        HiStrung::Guitar.mass_create_acoustics(array)
     end
 end

@@ -34,7 +34,6 @@ class HiStrung::CLI
         print "Enter here: "
 
         while (input = gets.strip.downcase) != 'exit'
-            sleep(2)
             case input
             when "electric"
                 puts ""
@@ -50,11 +49,10 @@ class HiStrung::CLI
                 print "Enter here: "
             when "acoustic"
                 puts ""
-                puts "           Top 9 acoustic guitars!".bold.light_yellow
+                puts "           Top 5 acoustic guitars!".bold.light_yellow
                 HiStrung::Guitar.acoustics.each.with_index(1) do |acoustic, index|
                     puts "#{index}. #{acoustic.name}".red.bold + " - #{acoustic.url}".light_white
                 end
-                
                 puts ""
                 puts "__________________"
                 puts ""
