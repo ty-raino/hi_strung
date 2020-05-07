@@ -1,5 +1,5 @@
 class HiStrung::Guitar
-    attr_accessor :name, :url, :price, :description
+    attr_accessor :name, :url
 
     @@electrics = []
     @@acoustics = []
@@ -28,16 +28,5 @@ class HiStrung::Guitar
 
     def initialize(name, url)
         @name, @url = name, url
-        @price, @description = nil, nil
     end
-
-    # def populate(price: , description: )
-    #     self.price = price
-    #     self.description = description
-    # end
-
-    # def more_info
-    #     "#{price}| #{description}"
-    # end
-
 end

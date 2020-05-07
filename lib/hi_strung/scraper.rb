@@ -51,53 +51,6 @@ class HiStrung::Scraper
             acoustics << acoustic
         end
         acoustics
-        acoustics.delete_at(2)
-        acoustics.delete_at(3)
         HiStrung::Guitar.mass_create_acoustics(acoustics)
     end
-
-    
-    
- 
-    def self.get_electric_info(electric)
-       url = electric.url
-       doc = Nokogiri::HTML(open(url))
-
-       full_name = doc.css("div.overflowing-row__items ul.tiles.tiles--single-row.tiles--grow.tiles--large li.tiles__tile div.csp-square-card__main h3").first.text
-    end
-
-    def self.get_acoustic_info(acoustic)
-        url = acoustic.url
-        doc = Nokogiri::HTML(open(url))
-
-        full_name = doc.css("div.overflowing-row__items ul.tiles.tiles--single-row.tiles--grow.tiles--large li.tiles__tile div.csp-square-card__main h3").first.text
-    end
 end
-
-
-
-
-# def self.get_electric
-#     doc = Nokogiri::HTML(open("https://reverb.com/c/electric-guitars"))
-
-#     guitars = []
-#     counter = 0
-
-#     electric = doc.css("h2:contains('Popular Electric Guitars')+div.overflowing-row__items ul.tiles.tiles--single-row.tiles--grow.tiles--three-wide li.tiles__tile")
-#     electric.each do |li|
-#     li = HiStrung::Guitar.new
-#     li.name = doc.css("h2:contains('Popular Electric Guitars')+div.overflowing-row__items ul.tiles.tiles--single-row.tiles--grow.tiles--three-wide li.tiles__tile").text.take(5)
-#     li.url = doc.css("h2:contains('Popular Electric Guitars')+div.overflowing-row__items ul.tiles.tiles--single-row.tiles--grow.tiles--three-wide li.tiles__tile a.marketing-callout__inner").first["href"]
-#     binding.pry
-#     end
-# end
-
-# def self.get_acoustic
-#     doc = Nokogiri::HTML(open("https://reverb.com/c/acoustic-guitars"))
-#     acoustic = doc.css("h2:contains('Popular in Acoustic Guitars')+div.overflowing-row__items ul.tiles.tiles--single-row.tiles--grow.tiles--three-wide li.tiles__tile")
-#     acoustic.each do |li|
-#     li = HiStrung::Guitar.new
-#     li.name = doc.css("h2:contains('Popular in Acoustic Guitars')+div.overflowing-row__items ul.tiles.tiles--single-row.tiles--grow.tiles--three-wide li.tiles__tile").first.text
-#     li.url = doc.css("h2:contains('Popular in Acoustic Guitars')+div.overflowing-row__items ul.tiles.tiles--single-row.tiles--grow.tiles--three-wide li.tiles__tile a.marketing-callout__inner").first["href"]
-#     end
-# end
