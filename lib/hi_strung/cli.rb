@@ -39,12 +39,12 @@ class HiStrung::CLI
                 puts ""
                 puts "           Top 5 Electric guitars!".bold.light_yellow
 
-                 display_guitars('electric', HiStrung::Guitar.electrics)
+                 display_guitars(HiStrung::Guitar.electrics)
             when "acoustic"
                 puts ""
                 puts "           Top 5 Acoustic guitars!".bold.light_yellow
 
-                display_guitars('acoustic', HiStrung::Guitar.acoustics)
+                display_guitars(HiStrung::Guitar.acoustics)
             else 
                 puts "'#{input}' is not a valid response!"
                 puts "Please enter 'Electric' or 'Acoustic'"
@@ -55,8 +55,7 @@ class HiStrung::CLI
         end
     end
 
-    def display_guitars(category, collection)
-           category == 'electric' || 'acoustic'
+    def display_guitars(collection)
            collection.each.with_index(1) do |e, i|
                 puts "#{i}. #{e.name}".red.bold + " - #{e.url}".light_white
             end
