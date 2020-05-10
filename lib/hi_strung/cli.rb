@@ -42,8 +42,9 @@ class HiStrung::CLI
                  display_guitars('electric')
             when "acoustic"
                 puts ""
+                puts "           Top 5 Acoustic guitars!".bold.light_yellow
+
                 display_guitars('acoustic')
-                
             else 
                 puts "'#{input}' is not a valid response!"
                 puts "Please enter 'Electric' or 'Acoustic'"
@@ -64,8 +65,6 @@ class HiStrung::CLI
             puts "#{i}. #{a.name}".red.bold + " - #{a.url}".light_white
         end
     end
-        
-        
         puts ""
         puts "__________________"
         puts ""
