@@ -3,6 +3,7 @@ class HiStrung::Guitar
 
     @@electrics = []
     @@acoustics = []
+   
 
     def self.electrics
         @@electrics
@@ -12,21 +13,22 @@ class HiStrung::Guitar
         @@acoustics
     end
 
-    def self.mass_create_electrics(electric_hash)
-        electric_hash.each do |e_hash|
-            electric = HiStrung::Guitar.new(e_hash[:name], e_hash[:url])
-            @@electrics << electric
+    def self.mass_create_guitars(guitar_hash, category)
+        guitar_hash.each do |g_hash|
+         guitars = HiStrung::Guitar.new(g_hash[:name], g_hash[:url])
+         
+         if category == "electric"
+            @@electrics << guitars
+         elsif category == "acoustic"
+            @@acoustics << guitars
         end
-    end
-
-    def self.mass_create_acoustics(acoustic_hash)
-        acoustic_hash.each do |a_hash|
-            acoustic = HiStrung::Guitar.new(a_hash[:name], a_hash[:url])
-            @@acoustics << acoustic
-        end
+     end
+    
     end
 
     def initialize(name, url)
         @name, @url = name, url
     end
 end
+
+

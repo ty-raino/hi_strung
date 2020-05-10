@@ -37,28 +37,13 @@ class HiStrung::CLI
             case input
             when "electric"
                 puts ""
-                puts "           Top 5 electric guitars!".bold.light_yellow
-                HiStrung::Guitar.electrics.each.with_index(1) do |electric, index|
-                    puts "#{index}. #{electric.name}".red.bold + " - #{electric.url}".light_white
-                end
-                puts ""
-                puts "__________________"
-                puts ""
-                puts "Please enter 'Electric' or 'Acoustic'".yellow.bold
-                puts "Type 'Exit' to exit".yellow.bold
-                print "Enter here: "
+                puts "           Top 5 Electric guitars!".bold.light_yellow
+
+                 display_guitars('electric')
             when "acoustic"
                 puts ""
-                puts "           Top 5 acoustic guitars!".bold.light_yellow
-                HiStrung::Guitar.acoustics.each.with_index(1) do |acoustic, index|
-                    puts "#{index}. #{acoustic.name}".red.bold + " - #{acoustic.url}".light_white
-                end
-                puts ""
-                puts "__________________"
-                puts ""
-                puts "Please enter 'Electric' or 'Acoustic'".yellow.bold
-                puts "Type 'Exit' to exit".yellow.bold
-                print "Enter here: "
+                display_guitars('acoustic')
+                
             else 
                 puts "'#{input}' is not a valid response!"
                 puts "Please enter 'Electric' or 'Acoustic'"
@@ -69,10 +54,31 @@ class HiStrung::CLI
         end
     end
 
+    def display_guitars(category)
+        if category == 'electric'
+       HiStrung::Guitar.electrics.each.with_index(1) do |e, i|
+            puts "#{i}. #{e.name}".red.bold + " - #{e.url}".light_white
+        end
+    elsif category == 'acoustic'
+        HiStrung::Guitar.acoustics.each.with_index(1) do |a, i|
+            puts "#{i}. #{a.name}".red.bold + " - #{a.url}".light_white
+        end
+    end
+        
+        
+        puts ""
+        puts "__________________"
+        puts ""
+        puts "Please enter 'Electric' or 'Acoustic'".yellow.bold
+        puts "Type 'Exit' to exit".yellow.bold
+        print "Enter here: "
+    end
+
     def goodbye
         puts "__________________"
         puts ""
         puts "Which guitar will you pick? Thank you for viewing!".bold.light_yellow
     end
 end
+
 

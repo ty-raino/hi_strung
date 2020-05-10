@@ -33,7 +33,8 @@ class HiStrung::Scraper
         electrics << electric
         end
         electrics
-        HiStrung::Guitar.mass_create_electrics(electrics)
+        HiStrung::Guitar.mass_create_guitars(electrics, 'electric')
+        
     end
 
     def self.get_acoustic
@@ -51,7 +52,7 @@ class HiStrung::Scraper
             acoustics << acoustic
         end
         acoustics
-        array = acoustics.take(5)
-        HiStrung::Guitar.mass_create_acoustics(array)
+        acoustic_array = acoustics.take(5)
+        HiStrung::Guitar.mass_create_guitars(acoustic_array, 'acoustic')
     end
 end
