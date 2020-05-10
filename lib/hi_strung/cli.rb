@@ -39,12 +39,12 @@ class HiStrung::CLI
                 puts ""
                 puts "           Top 5 Electric guitars!".bold.light_yellow
 
-                 display_guitars('electric')
+                 display_guitars('electric', HiStrung::Guitar.electrics)
             when "acoustic"
                 puts ""
                 puts "           Top 5 Acoustic guitars!".bold.light_yellow
 
-                display_guitars('acoustic')
+                display_guitars('acoustic', HiStrung::Guitar.acoustics)
             else 
                 puts "'#{input}' is not a valid response!"
                 puts "Please enter 'Electric' or 'Acoustic'"
@@ -55,23 +55,21 @@ class HiStrung::CLI
         end
     end
 
-    def display_guitars(category)
-        if category == 'electric'
-       HiStrung::Guitar.electrics.each.with_index(1) do |e, i|
-            puts "#{i}. #{e.name}".red.bold + " - #{e.url}".light_white
+    def display_guitars(category, collection)
+           category == 'electric' || 'acoustic'
+           collection.each.with_index(1) do |e, i|
+                puts "#{i}. #{e.name}".red.bold + " - #{e.url}".light_white
+            end
+        
+            puts ""
+            puts "__________________"
+            puts ""
+            puts "Please enter 'Electric' or 'Acoustic'".yellow.bold
+            puts "Type 'Exit' to exit".yellow.bold
+            print "Enter here: "
         end
-    elsif category == 'acoustic'
-        HiStrung::Guitar.acoustics.each.with_index(1) do |a, i|
-            puts "#{i}. #{a.name}".red.bold + " - #{a.url}".light_white
-        end
-    end
-        puts ""
-        puts "__________________"
-        puts ""
-        puts "Please enter 'Electric' or 'Acoustic'".yellow.bold
-        puts "Type 'Exit' to exit".yellow.bold
-        print "Enter here: "
-    end
+        
+        
 
     def goodbye
         puts "__________________"
@@ -79,5 +77,4 @@ class HiStrung::CLI
         puts "Which guitar will you pick? Thank you for viewing!".bold.light_yellow
     end
 end
-
 
